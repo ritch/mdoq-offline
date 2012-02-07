@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<title>mdoq.offline tests</title>
+	<link rel="stylesheet" href="mocha.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	
+	<!-- deps -->
+	<script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+	<script src="http://westcoastlogic.com/lawnchair/downloads/lawnchair-0.6.1.js"></script>
+	<!-- mdoq -->
+	<script src="/src/mdoq.js"></script>
+	
+	<script src="https://raw.github.com/visionmedia/mocha/master/mocha.js?v0.8.1"></script>
+	<script src="https://raw.github.com/logicalparadox/chai/master/chai.js"></script>
+	
+	<script>mocha.setup('bdd')</script>
+
+	<!-- mdoq.offline -->
+	<script src="/src/mdoq.jquery.js"></script>
+	<script src="/src/mdoq.offline.js"></script>
+	<script src="sync.test.js"></script>
+	
+	<script>
+		var expect = chai.expect;
+		
+	  onload = function(){
+	    mocha.run()
+	  };
+	</script>
+</head>
+<body>
+	<div id="mocha"></div>
+</body>
+</html>
