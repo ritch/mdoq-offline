@@ -2,6 +2,25 @@
   if(!mdoq) throw new Error('you must include mdoq before mdoq.jquery');
   if(!$ || !jQuery) throw new Error('you must include jQuery before mdoq.jquery')
 
+  function mime(req) {
+    var str = req.headers['content-type'];
+    
+    if(!str && typeof (req.body || req.data) == 'object') str = 'application/json';
+     
+    return str;
+  }
+  
+  function serialize(req) {
+    var data = req.body || req.data
+      , contentType = mime(req);
+    
+    if(typeof data != 'string' && contentType && contentType.indexOf('json') > -1) {
+      data = JSON.stringify(data);
+    }
+    
+    return data;
+  }
+
   mdoq.jquery = function(options) {
     var settings = $.extend({
       // defaults
@@ -24,10 +43,11 @@
       if(!res.body) {
         $.ajax($.extend(settings, {
           url: req.url + (queryArr.length ? ('?' + queryArr.join('&')) : ''),
-          data: req.body,
+          data: serialize(req),
           type: req.method,
+          contentType: mime(req),
           success: function(data, textStatus, jqXHR) {
-            res.body = data;
+            res.body = res.data = data;
             next();
           },
           error: function(jqXHR, textStatus, errorThrown) {

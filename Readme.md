@@ -77,3 +77,11 @@ The following methods are exposed via **mdoq**:
  - del()
  
 See the **mdoq** [documentation](https://github.com/ritch/mdoq) for more details.
+
+## Tests
+
+To spawn a testing server you must have [Node.js](http://nodejs.org) and [express](http://expressjs.com) installed.
+
+    $ make test
+  
+Will boot a testing server at `http://localhost:3000`.

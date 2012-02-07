@@ -51,7 +51,7 @@ mdoq.exec = function(req, callback, out) {
   // setup the request
   self.req = req || {};
   self.req.headers = {};
-  self.req.url = self.url;
+  self.req.url = self.req.url || self.url;
   self.req.method = req.method || 'GET';
   
   // reset request
@@ -118,6 +118,8 @@ while(method = methods.shift()) {
       }
 
       if(callback) {
+        req.url = req.url || this.url;
+        
         // execute the request
         this.exec(req, callback);
         // reset request
